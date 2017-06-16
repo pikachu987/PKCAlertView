@@ -1,0 +1,16 @@
+PODS:
+  - PKCAlertView (0.1.0)
+
+DEPENDENCIES:
+  - PKCAlertView (from `../`)
+
+EXTERNAL SOURCES:
+  PKCAlertView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  PKCAlertView: 073f6eb6edc1e85f8ab462b1f0f4efd7bfc96ab2
+
+PODFILE CHECKSUM: bf32779210d5d4dbc47ef35432f2d083bdb8492d
+
+COCOAPODS: 1.3.0.beta.1

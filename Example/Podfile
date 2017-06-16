@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PKCAlertView_Example' do
+  pod 'PKCAlertView', :path => '../'
+
+  target 'PKCAlertView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

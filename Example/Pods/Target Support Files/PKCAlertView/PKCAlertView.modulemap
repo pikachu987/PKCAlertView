@@ -1,0 +1,6 @@
+framework module PKCAlertView {
+  umbrella header "PKCAlertView-umbrella.h"
+
+  export *
+  module * { export * }
+}
