@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = 'PKCAlertView'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'AlertView'
-  s.description      = 'UIAlertController -> PKCAlertView'
+s.description      = 'You can easily write UIAlertController to PKCAlertView.'
   s.homepage         = 'https://github.com/pikachu987/PKCAlertView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'pikachu987' => 'pikachu77769@gmail.com' }

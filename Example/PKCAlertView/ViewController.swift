@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import PKCAlertView
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+            let alertView = PKCAlertView("asdf", description: "wewfw", leftText: "dsfadsfadsf", centerText: "ewrw", rightText: "qweq")
+            
+            alertView.addSuperView(self.view)
+        }
     }
 
     override func didReceiveMemoryWarning() {

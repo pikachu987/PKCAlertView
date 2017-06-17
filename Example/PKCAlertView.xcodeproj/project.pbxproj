@@ -31,7 +31,7 @@
 		00EC62A8194B9DF84780CB7D /* Pods-PKCAlertView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PKCAlertView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PKCAlertView_Tests/Pods-PKCAlertView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F517801EDA9D8F5550E5B84 /* Pods_PKCAlertView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PKCAlertView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B56587E5DF519107DC2DA7 /* Pods_PKCAlertView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PKCAlertView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		161D1DBE492B18FFCA9D4EE3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		161D1DBE492B18FFCA9D4EE3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		531FEDD539BC044AAC1009FB /* Pods-PKCAlertView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PKCAlertView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PKCAlertView_Tests/Pods-PKCAlertView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* PKCAlertView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PKCAlertView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,9 +44,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6C5346ABC74F22C221523F3D /* Pods-PKCAlertView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PKCAlertView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PKCAlertView_Example/Pods-PKCAlertView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		80EEA99B994B14EF56928742 /* PKCAlertView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = PKCAlertView.podspec; path = ../PKCAlertView.podspec; sourceTree = "<group>"; };
+		80EEA99B994B14EF56928742 /* PKCAlertView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PKCAlertView.podspec; path = ../PKCAlertView.podspec; sourceTree = "<group>"; };
 		C531ABB86ECC17D8B3EE4406 /* Pods-PKCAlertView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PKCAlertView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PKCAlertView_Example/Pods-PKCAlertView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		C708835FC3765C3262B0AE68 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C708835FC3765C3262B0AE68 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
