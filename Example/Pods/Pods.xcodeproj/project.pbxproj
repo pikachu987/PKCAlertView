@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2151D31EF4E5D60082728D /* PKCAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2151D21EF4E5D60082728D /* PKCAlertButton.swift */; };
+		0C2151D51EF4E8D50082728D /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2151D41EF4E8D50082728D /* Extension+.swift */; };
 		0C87380B1EF41DE70083DDB3 /* PKCAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C87380A1EF41DE70083DDB3 /* PKCAlertView.swift */; };
-		0C87380D1EF41E080083DDB3 /* PKCAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C87380C1EF41E080083DDB3 /* PKCAlertHelper.swift */; };
+		0CE16F321EF4F55E00D5D5E7 /* PKCAlertLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE16F311EF4F55E00D5D5E7 /* PKCAlertLabel.swift */; };
+		0CE16F341EF4FB7000D5D5E7 /* PKCLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE16F331EF4FB7000D5D5E7 /* PKCLineView.swift */; };
+		0CE16F361EF54FC900D5D5E7 /* PKCContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE16F351EF54FC900D5D5E7 /* PKCContainerView.swift */; };
+		0CE16F381EF5519F00D5D5E7 /* PKCButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE16F371EF5519F00D5D5E7 /* PKCButtonView.swift */; };
+		0CE16F3A1EF5529B00D5D5E7 /* PKCButtonGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE16F391EF5529B00D5D5E7 /* PKCButtonGroupView.swift */; };
 		346EDAC803FCF3060FB4170A8AE79EE2 /* PKCAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A55B5F2CADDDC1E3D5DB1D30AC90343F /* PKCAlertView-dummy.m */; };
 		3A8357A7539683DC20D3F0075DFEF7A8 /* Pods-PKCAlertView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A06434AA473ADDD68993B82C177A230B /* Pods-PKCAlertView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6000EAE59103155C3EC40E77B32887CF /* PKCAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC48900E3FADA143FD32C3585AFF6EE /* PKCAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,8 +37,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C2151D21EF4E5D60082728D /* PKCAlertButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCAlertButton.swift; sourceTree = "<group>"; };
+		0C2151D41EF4E8D50082728D /* Extension+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+.swift"; sourceTree = "<group>"; };
 		0C87380A1EF41DE70083DDB3 /* PKCAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCAlertView.swift; sourceTree = "<group>"; };
-		0C87380C1EF41E080083DDB3 /* PKCAlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCAlertHelper.swift; sourceTree = "<group>"; };
+		0CE16F311EF4F55E00D5D5E7 /* PKCAlertLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCAlertLabel.swift; sourceTree = "<group>"; };
+		0CE16F331EF4FB7000D5D5E7 /* PKCLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCLineView.swift; sourceTree = "<group>"; };
+		0CE16F351EF54FC900D5D5E7 /* PKCContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCContainerView.swift; sourceTree = "<group>"; };
+		0CE16F371EF5519F00D5D5E7 /* PKCButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCButtonView.swift; sourceTree = "<group>"; };
+		0CE16F391EF5529B00D5D5E7 /* PKCButtonGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKCButtonGroupView.swift; sourceTree = "<group>"; };
 		14B3FE13ADBC120DC4506ED5AB12714F /* Pods-PKCAlertView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PKCAlertView_Tests-dummy.m"; sourceTree = "<group>"; };
 		15952846A72AB23108CCC3BF7C415DE5 /* Pods-PKCAlertView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PKCAlertView_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		16B5CB8B32607B610531055E009D954D /* Pods-PKCAlertView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PKCAlertView_Tests.modulemap"; sourceTree = "<group>"; };
@@ -132,8 +144,14 @@
 		72685BB998A22793B63957F49634B0FA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0C2151D41EF4E8D50082728D /* Extension+.swift */,
 				0C87380A1EF41DE70083DDB3 /* PKCAlertView.swift */,
-				0C87380C1EF41E080083DDB3 /* PKCAlertHelper.swift */,
+				0CE16F351EF54FC900D5D5E7 /* PKCContainerView.swift */,
+				0CE16F311EF4F55E00D5D5E7 /* PKCAlertLabel.swift */,
+				0CE16F371EF5519F00D5D5E7 /* PKCButtonView.swift */,
+				0CE16F391EF5529B00D5D5E7 /* PKCButtonGroupView.swift */,
+				0CE16F331EF4FB7000D5D5E7 /* PKCLineView.swift */,
+				0C2151D21EF4E5D60082728D /* PKCAlertButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -356,9 +374,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CE16F381EF5519F00D5D5E7 /* PKCButtonView.swift in Sources */,
+				0CE16F3A1EF5529B00D5D5E7 /* PKCButtonGroupView.swift in Sources */,
 				346EDAC803FCF3060FB4170A8AE79EE2 /* PKCAlertView-dummy.m in Sources */,
-				0C87380D1EF41E080083DDB3 /* PKCAlertHelper.swift in Sources */,
+				0C2151D51EF4E8D50082728D /* Extension+.swift in Sources */,
+				0CE16F321EF4F55E00D5D5E7 /* PKCAlertLabel.swift in Sources */,
+				0C2151D31EF4E5D60082728D /* PKCAlertButton.swift in Sources */,
+				0CE16F361EF54FC900D5D5E7 /* PKCContainerView.swift in Sources */,
 				0C87380B1EF41DE70083DDB3 /* PKCAlertView.swift in Sources */,
+				0CE16F341EF4FB7000D5D5E7 /* PKCLineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
