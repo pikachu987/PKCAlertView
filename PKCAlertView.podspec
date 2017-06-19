@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PKCAlertView'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'AlertView'
 s.description      = 'You can easily write UIAlertController to PKCAlertView.'
   s.homepage         = 'https://github.com/pikachu987/PKCAlertView'

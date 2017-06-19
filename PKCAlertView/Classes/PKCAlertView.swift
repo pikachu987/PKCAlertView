@@ -66,7 +66,7 @@ public class PKCAlertView: UIView {
     }
     
     
-    public func addSuperView(_ superView: UIView){
+    public func setSuperView(_ superView: UIView){
         self.superView = superView
         superView.addSubview(self)
         self.leadingConst = NSLayoutConstraint(item: superView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)

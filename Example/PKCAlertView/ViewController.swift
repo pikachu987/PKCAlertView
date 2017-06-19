@@ -34,7 +34,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate{
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertView = PKCAlertView(self.titleTextField.text!, message: self.messageTextField.text!)
-        alertView.addSuperView(self.view)
+        alertView.setSuperView(self.view)
         alertView.animationTime = TimeInterval(timeSlider.value)
         if indexPath.section == 0{
             if indexPath.row == 0{

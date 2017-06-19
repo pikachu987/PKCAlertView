@@ -26,7 +26,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 import PKCAlertView
 
 let alertView = PKCAlertView("Title", message: "Message")
-alertView.addSuperView(self.view)
+alertView.setSuperView(self.view)
 
 alertView.addAlertButton("Default") { (type, text) in
 
