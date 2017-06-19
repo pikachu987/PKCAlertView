@@ -8,13 +8,9 @@
 ## Example
 
 ![image](./0.gif)
-
 ![image](./4.png)
-
 ![image](./3.png)
-
 ![image](./2.png)
-
 ![image](./1.png)
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
