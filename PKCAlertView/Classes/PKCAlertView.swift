@@ -1,10 +1,22 @@
+//Copyright (c) 2017 pikachu987 <pikachu77769@gmail.com>
 //
-//  PKCAlertView.swift
-//  Pods
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
 //
-//  Created by Kim Guanho on 2017. 6. 16..
+//The above copyright notice and this permission notice shall be included in
+//all copies or substantial portions of the Software.
 //
-//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//THE SOFTWARE.
 
 import UIKit
 
@@ -17,48 +29,29 @@ public enum PKCAlertAnimationType {
 }
 
 public class PKCAlertView: UIView {
-    public var containerView: PKCContainerView!
+    public var containerView: PKCContainerView
     public var animationTime: TimeInterval = 0.5
     public var animationType: PKCAlertAnimationType = .default
     
-    fileprivate var superView: UIView!
+    var topConst: NSLayoutConstraint?
+    var bottomConst: NSLayoutConstraint?
+    var leadingConst: NSLayoutConstraint?
+    var trailingConst: NSLayoutConstraint?
     
-    fileprivate var topConst: NSLayoutConstraint?
-    fileprivate var bottomConst: NSLayoutConstraint?
-    fileprivate var leadingConst: NSLayoutConstraint?
-    fileprivate var trailingConst: NSLayoutConstraint?
-    
-    fileprivate var centerConst: NSLayoutConstraint!
+    fileprivate var centerConst: NSLayoutConstraint?
     fileprivate var defaultTopConst: NSLayoutConstraint?
     
-    public init(_ title: String, message: String) {
-        super.init(frame: .zero)
-        
-        self.backgroundColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
-        self.alpha = 0
-        self.isHidden = true
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.clipsToBounds = true
-        
+    public init(_ title: String, message: String, bgColor: UIColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 0.8)) {
         self.containerView = PKCContainerView(title, message: message)
-        self.addSubview(self.containerView)
-        
-        
-        self.addConstraints(self.containerView.horizontalLayout(left: 32, right: 32))
-        
-        self.centerConst = NSLayoutConstraint(
-            item: self,
-            attribute: .centerY,
-            relatedBy: .equal,
-            toItem: self.containerView,
-            attribute: .centerY,
-            multiplier: 1,
-            constant: 0)
-        self.addConstraint(self.centerConst)
+        super.init(frame: .zero)
+        self.backgroundColor = bgColor
+        self.initVars()
     }
     
     private override init(frame: CGRect) {
+        self.containerView = PKCContainerView("", message: "")
         super.init(frame: frame)
+        self.initVars()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -66,23 +59,31 @@ public class PKCAlertView: UIView {
     }
     
     
-    public func setSuperView(_ superView: UIView){
-        self.superView = superView
-        superView.addSubview(self)
-        self.leadingConst = NSLayoutConstraint(item: superView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-        self.trailingConst = NSLayoutConstraint(item: superView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        self.topConst = NSLayoutConstraint(item: superView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
-        self.bottomConst = NSLayoutConstraint(item: superView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-        self.leadingConst?.priority = UILayoutPriority(999)
-        self.trailingConst?.priority = UILayoutPriority(999)
-        self.topConst?.priority = UILayoutPriority(999)
-        self.bottomConst?.priority = UILayoutPriority(999)
-        superView.addConstraints([self.leadingConst!, self.trailingConst!, self.topConst!, self.bottomConst!])
+    private func initVars(){
+        self.alpha = 0
+        self.isHidden = true
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.clipsToBounds = true
+        self.addSubview(self.containerView)
+        self.addConstraints(self.containerView.horizontalLayout(left: 32, right: 32))
+        
+        let centerConst = NSLayoutConstraint(
+            item: self,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: self.containerView,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0)
+        self.addConstraint(centerConst)
+        self.centerConst = centerConst
     }
     
     
     
     
+    
+    // MARK: AddView
     
     public func addAlertView(_ text: String, textColor: UIColor = .alertDefault, handler: ((PKCAlertButtonType, String) -> Void)? = nil){
         let groupButtonView = self.containerView.buttonView.addButtonGroupView(text, textColor: textColor, handler: handler)
@@ -100,14 +101,40 @@ public class PKCAlertView: UIView {
     }
     
     
+    // MARK: AddButton
     
-    public func addAlertButton(_ text: String, textColor: UIColor = .alertDefault, handler: ((PKCAlertButtonType, String) -> Void)? = nil){
-        let groupButtonView = self.containerView.buttonView.addButtonGroupView(text, textColor: textColor, handler: handler)
+    public func addAlertButton(_ defaultButton: PKCAlertButton, handler: ((PKCAlertButtonType, String) -> Void)? = nil){
+        let groupButtonView = self.containerView.buttonView.addButtonGroupView(defaultButton, handler: handler)
         groupButtonView.delegate = self
     }
     
+    
+    public func addAlertButton(_ leftButton: PKCAlertButton, rightButton: PKCAlertButton, handler: ((PKCAlertButtonType, String) -> Void)? = nil){
+        let groupButtonView = self.containerView.buttonView.addButtonGroupView(leftButton, rightButton: rightButton, handler: handler)
+        groupButtonView.delegate = self
+    }
+    
+    public func addAlertButton(_ leftButton: PKCAlertButton, centerButton: PKCAlertButton, rightButton: PKCAlertButton, handler: ((PKCAlertButtonType, String) -> Void)? = nil){
+        let groupButtonView = self.containerView.buttonView.addButtonGroupView(leftButton, centerButton: centerButton, rightButton: rightButton, handler: handler)
+        groupButtonView.delegate = self
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: Animation
+    
     public func show(){
-        if self.superView == nil{
+        guard let superview = self.superview else{
             return
         }
         self.containerView.sizeToFit()
@@ -123,7 +150,7 @@ public class PKCAlertView: UIView {
                 self.alpha = 1
                 self.isHidden = false
                 
-                self.centerConst.isActive = false
+                self.centerConst?.isActive = false
                 let topConst = NSLayoutConstraint(
                     item: self,
                     attribute: .top,
@@ -135,25 +162,25 @@ public class PKCAlertView: UIView {
                 self.addConstraint(topConst)
                 
                 let bottomConst = NSLayoutConstraint(
-                    item: self.superView,
+                    item: superview,
                     attribute: .bottom,
                     relatedBy: .equal,
                     toItem: self,
                     attribute: .top,
                     multiplier: 1,
                     constant: 0)
-                self.superView.addConstraint(bottomConst)
+                self.superview?.addConstraint(bottomConst)
                 
                 DispatchQueue.main.async{
                     bottomConst.isActive = false
                     UIView.animate(withDuration: self.animationTime) {
-                        self.superView.layoutIfNeeded()
+                        self.superview?.layoutIfNeeded()
                     }
                 }
             }else if self.animationType == .default{
                 self.isHidden = false
-                self.centerConst.isActive = false
-                self.defaultTopConst = NSLayoutConstraint(
+                self.centerConst?.isActive = false
+                let defaultTopConst = NSLayoutConstraint(
                     item: self,
                     attribute: .top,
                     relatedBy: .equal,
@@ -161,7 +188,8 @@ public class PKCAlertView: UIView {
                     attribute: .top,
                     multiplier: 1,
                     constant: self.containerView.bounds.height)
-                self.addConstraint(self.defaultTopConst!)
+                self.addConstraint(defaultTopConst)
+                self.defaultTopConst = defaultTopConst
                 UIView.animate(withDuration: self.animationTime/3, animations: { 
                     self.alpha = 1
                 }, completion: { (_) in
@@ -174,10 +202,11 @@ public class PKCAlertView: UIView {
         }
     }
     
-}
-
-extension PKCAlertView: PKCButtonDelegate{
-    func pkcButtonAction() {
+    
+    public func hide(){
+        guard let superview = self.superview else{
+            return
+        }
         if self.animationType == .alpha{
             UIView.animate(withDuration: self.animationTime, animations: {
                 self.alpha = 0
@@ -186,16 +215,16 @@ extension PKCAlertView: PKCButtonDelegate{
             })
         }else if self.animationType == .modal{
             let bottomConst = NSLayoutConstraint(
-                item: self.superView,
+                item: superview,
                 attribute: .bottom,
                 relatedBy: .equal,
                 toItem: self,
                 attribute: .top,
                 multiplier: 1,
                 constant: 0)
-            self.superView.addConstraints([bottomConst])
+            self.superview?.addConstraints([bottomConst])
             UIView.animate(withDuration: self.animationTime, animations: {
-                self.superView.layoutIfNeeded()
+                self.superview?.layoutIfNeeded()
             }, completion: { (_) in
                 self.alpha = 0
                 self.isHidden = true
@@ -212,5 +241,18 @@ extension PKCAlertView: PKCButtonDelegate{
                 })
             })
         }
+    }
+    
+    
+    
+    
+}
+
+
+
+
+extension PKCAlertView: PKCButtonDelegate{
+    func pkcButtonAction() {
+        self.hide()
     }
 }

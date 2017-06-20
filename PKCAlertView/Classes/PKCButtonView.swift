@@ -1,10 +1,22 @@
+//Copyright (c) 2017 pikachu987 <pikachu77769@gmail.com>
 //
-//  PKCButtonView.swift
-//  Pods
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
 //
-//  Created by Kim Guanho on 2017. 6. 17..
+//The above copyright notice and this permission notice shall be included in
+//all copies or substantial portions of the Software.
 //
-//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//THE SOFTWARE.
 
 import UIKit
 
@@ -39,6 +51,13 @@ class PKCButtonView: UIView {
     }
     
     
+    
+    
+    
+    
+    
+    
+    
     func addButtonGroupView(_ text: String, textColor: UIColor, handler: ((PKCAlertButtonType, String) -> Void)? = nil) -> PKCButtonGrouopView{
         let buttonGroupView = PKCButtonGrouopView(text, textColor: textColor, handler: handler)
         self.addButtonGroupView(buttonGroupView)
@@ -61,26 +80,52 @@ class PKCButtonView: UIView {
     
     
     
+    func addButtonGroupView(_ defaultButton: PKCAlertButton, handler: ((PKCAlertButtonType, String) -> Void)? = nil) -> PKCButtonGrouopView{
+        let buttonGroupView = PKCButtonGrouopView(defaultButton, handler: handler)
+        self.addButtonGroupView(buttonGroupView)
+        return buttonGroupView
+    }
+    
+    
+    func addButtonGroupView(_ leftButton: PKCAlertButton, rightButton: PKCAlertButton, handler: ((PKCAlertButtonType, String) -> Void)? = nil) -> PKCButtonGrouopView{
+        let buttonGroupView = PKCButtonGrouopView(leftButton, rightButton: rightButton, handler: handler)
+        self.addButtonGroupView(buttonGroupView)
+        return buttonGroupView
+    }
+    
+    func addButtonGroupView(_ leftButton: PKCAlertButton, centerButton: PKCAlertButton, rightButton: PKCAlertButton, handler: ((PKCAlertButtonType, String) -> Void)? = nil) -> PKCButtonGrouopView{
+        let buttonGroupView = PKCButtonGrouopView(leftButton, centerButton: centerButton, rightButton: rightButton, handler: handler)
+        self.addButtonGroupView(buttonGroupView)
+        return buttonGroupView
+    }
+    
+    
+    
+    
+    
     
     
     
     private func addButtonGroupView(_ buttonGroupView: PKCButtonGrouopView){
         self.addSubview(buttonGroupView)
         self.addConstraints(buttonGroupView.horizontalLayout())
-        if self.bottomConst == nil && self.lastButtonGroupView == nil{
+        
+        if let bottomConst = self.bottomConst, let lastButtonGroupView = self.lastButtonGroupView{
+            let topConst = NSLayoutConstraint(item: lastButtonGroupView, attribute: .bottom, relatedBy: .equal, toItem: buttonGroupView, attribute: .top, multiplier: 1, constant: 0)
+            self.addConstraint(topConst)
+            bottomConst.isActive = false
+        }else{
             let topConst = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: buttonGroupView, attribute: .top, multiplier: 1, constant: 0)
             self.addConstraint(topConst)
-        }else{
-            let topConst = NSLayoutConstraint(item: self.lastButtonGroupView!, attribute: .bottom, relatedBy: .equal, toItem: buttonGroupView, attribute: .top, multiplier: 1, constant: 0)
-            self.addConstraint(topConst)
         }
-        self.bottomConst?.isActive = false
         let bottomConst = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: buttonGroupView, attribute: .bottom, multiplier: 1, constant: 0)
         self.addConstraint(bottomConst)
         
         self.bottomConst = bottomConst
         self.lastButtonGroupView = buttonGroupView
-        
     }
+    
+    
+    
     
 }
