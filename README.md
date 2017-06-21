@@ -7,7 +7,7 @@
 
 ## Example
 
-![image](./img/100.gif = 200x)
+<img src="./img/100.gif" width="200"/>
 
 ![image](./img/14.png)
 ![image](./img/13.png)
