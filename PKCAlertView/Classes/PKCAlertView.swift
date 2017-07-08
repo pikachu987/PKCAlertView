@@ -41,17 +41,25 @@ public class PKCAlertView: UIView {
     fileprivate var centerConst: NSLayoutConstraint?
     fileprivate var defaultTopConst: NSLayoutConstraint?
     
-    public init(_ title: String, message: String, bgColor: UIColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 0.8)) {
+    public init(_ title: String, message: String, bgColor: UIColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 0.8), padding: CGFloat = 32) {
         self.containerView = PKCContainerView(title, message: message)
         super.init(frame: .zero)
         self.backgroundColor = bgColor
-        self.initVars()
+        self.initVars(padding)
+    }
+    
+    public init(_ title: String, message: String, bgColor: UIColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 0.8), width: CGFloat) {
+        self.containerView = PKCContainerView(title, message: message)
+        super.init(frame: .zero)
+        self.backgroundColor = bgColor
+        let padding = (UIScreen.main.bounds.width - width)/2
+        self.initVars(padding)
     }
     
     private override init(frame: CGRect) {
         self.containerView = PKCContainerView("", message: "")
         super.init(frame: frame)
-        self.initVars()
+        self.initVars(32)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -59,13 +67,13 @@ public class PKCAlertView: UIView {
     }
     
     
-    private func initVars(){
+    private func initVars(_ padding: CGFloat){
         self.alpha = 0
         self.isHidden = true
         self.translatesAutoresizingMaskIntoConstraints = false
         self.clipsToBounds = true
         self.addSubview(self.containerView)
-        self.addConstraints(self.containerView.horizontalLayout(left: 32, right: 32))
+        self.addConstraints(self.containerView.horizontalLayout(left: padding, right: padding))
         
         let centerConst = NSLayoutConstraint(
             item: self,
