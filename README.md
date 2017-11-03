@@ -14,7 +14,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 <br><br>
 
-####SImple Example
+#### Simple Example
 
 
 ~~~~
