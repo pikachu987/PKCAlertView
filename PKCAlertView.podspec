@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PKCAlertView'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'A view that can have the same effect as a UIAlertController with addSubView in the view'
   s.description      = 'In UIViewController, it is inconvenient for UIAlertController screen to come out when screen is changed. In order to get Alert screen from UIView, AlertView should let Alert come out of view from controller.'
   s.homepage         = 'https://github.com/pikachu987/PKCAlertView'

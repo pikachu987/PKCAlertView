@@ -10,18 +10,29 @@ import UIKit
 import PKCAlertView
 
 class ViewController: UIViewController {
-    @IBOutlet fileprivate weak var titleTextField: UITextField!
-    @IBOutlet fileprivate weak var messageTextField: UITextField!
-    @IBOutlet fileprivate weak var timeSlider: UISlider!
-
+    @IBOutlet private weak var titleTextView: UITextView!
+    @IBOutlet private weak var messageTextView: UITextView!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var paddingLabel: UILabel!
+    
+    private var time: CGFloat = 0.5
+    private var padding: CGFloat = 30.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.titleTextView.layer.borderWidth = 1
+        self.titleTextView.layer.borderColor = UIColor.lightGray.cgColor
+        self.titleTextView.layer.cornerRadius = 6
+        self.messageTextView.layer.borderWidth = 1
+        self.messageTextView.layer.borderColor = UIColor.lightGray.cgColor
+        self.messageTextView.layer.cornerRadius = 6
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.titleTextField.resignFirstResponder()
-        self.messageTextField.resignFirstResponder()
+        self.titleTextView.resignFirstResponder()
+        self.messageTextView.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,35 +41,37 @@ class ViewController: UIViewController {
     }
     
     
-    @objc fileprivate func defaultAction(_ sender: UIButton){
+    @objc private func defaultAction(_ sender: UIButton){
         print("defaultAction \(sender.currentTitle!)")
     }
     
-    @objc fileprivate func leftAction(_ sender: UIButton){
+    @objc private func leftAction(_ sender: UIButton){
         print("leftAction \(sender.currentTitle!)")
     }
     
-    @objc fileprivate func rightAction(_ sender: UIButton){
+    @objc private func rightAction(_ sender: UIButton){
         print("rightAction \(sender.currentTitle!)")
     }
     
-    @objc fileprivate func centerAction(_ sender: UIButton){
+    @objc private func centerAction(_ sender: UIButton){
         print("centerAction \(sender.currentTitle!)")
     }
 
+    @IBAction private func stepperAction(_ sender: UIStepper) {
+        self.time = CGFloat(sender.value)
+        self.timeLabel.text = "\(sender.value)"
+    }
+    @IBAction private func sliderAction(_ sender: UISlider) {
+        self.padding = CGFloat(sender.value)
+        self.paddingLabel.text = "\(sender.value)"
+    }
 }
 
 extension ViewController: UITableViewDelegate{
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alertView = PKCAlertView(self.titleTextView.text, message: self.messageTextView.text, padding: self.padding)
         
-        
-        
-        
-        
-        let alertView = PKCAlertView(self.titleTextField.text!, message: self.messageTextField.text!)
-        
-        self.view.pkc_addSubview(alertView)
-        alertView.animationTime = TimeInterval(timeSlider.value)
+        alertView.animationTime = TimeInterval(self.time)
         
         
         if indexPath.section == 0{
@@ -119,11 +132,6 @@ extension ViewController: UITableViewDelegate{
                 })
                 
                 
-                
-                
-                
-                
-                
                 let pkcAlertButton1 = PKCAlertButton("CustomLeftButton")
                 pkcAlertButton1.addTarget(self, action: #selector(self.leftAction(_:)), for: .touchUpInside)
                 pkcAlertButton1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
@@ -171,9 +179,6 @@ extension ViewController: UITableViewDelegate{
                 
             }
         }
-        
-        
-        
         
         else{
             alertView.addAlertView("Cancel", rightText: "OK") { (type, text) in

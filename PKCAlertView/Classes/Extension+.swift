@@ -22,8 +22,8 @@ import UIKit
 
 
 extension UIColor{
-    static let alertDefault = UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
-    static let alertCancel = UIColor(red: 1, green: 0.23, blue: 0.19, alpha: 1)
+    public static let alertDefault = UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
+    public static let alertCancel = UIColor(red: 1, green: 0.23, blue: 0.19, alpha: 1)
 }
 
 
@@ -35,25 +35,7 @@ extension UIEdgeInsets{
 }
 
 
-public extension UIView{
-    //addSubview
-    public func pkc_addSubview(_ alertView: PKCAlertView){
-        self.addSubview(alertView)
-        let leadingConst = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: alertView, attribute: .leading, multiplier: 1, constant: 0)
-        let trailingConst = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: alertView, attribute: .trailing, multiplier: 1, constant: 0)
-        let topConst = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: alertView, attribute: .top, multiplier: 1, constant: 0)
-        let bottomConst = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: alertView, attribute: .bottom, multiplier: 1, constant: 0)
-        leadingConst.priority = UILayoutPriority(999)
-        trailingConst.priority = UILayoutPriority(999)
-        topConst.priority = UILayoutPriority(999)
-        bottomConst.priority = UILayoutPriority(999)
-        self.addConstraints([leadingConst, trailingConst, topConst, bottomConst])
-        alertView.leadingConst = leadingConst
-        alertView.trailingConst = trailingConst
-        alertView.topConst = topConst
-        alertView.bottomConst = bottomConst
-    }
-    
+extension UIView{
     func horizontalLayout(left: CGFloat = 0, right: CGFloat = 0) -> [NSLayoutConstraint]{
         return NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(left)-[view]-\(right)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": self])
     }

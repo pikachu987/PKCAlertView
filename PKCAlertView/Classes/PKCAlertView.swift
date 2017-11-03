@@ -66,6 +66,11 @@ public class PKCAlertView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("deinit")
+    }
+    
+    
     
     private func initVars(_ padding: CGFloat){
         self.alpha = 0
@@ -134,7 +139,14 @@ public class PKCAlertView: UIView {
     
     
     
-    
+    private func topWindow() -> UIWindow?{
+        for window in UIApplication.shared.windows.reversed(){
+            if window.windowLevel == UIWindowLevelNormal && window.isKeyWindow && window.frame != CGRect.zero{
+                return window
+            }
+        }
+        return nil
+    }
     
     
     
@@ -142,10 +154,27 @@ public class PKCAlertView: UIView {
     // MARK: Animation
     
     public func show(){
-        guard let superview = self.superview else{
+        guard let window = self.topWindow() else {
             return
         }
+        window.addSubview(self)
+        let leadingConst = NSLayoutConstraint(item: window, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        let trailingConst = NSLayoutConstraint(item: window, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        let topConst = NSLayoutConstraint(item: window, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConst = NSLayoutConstraint(item: window, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        leadingConst.priority = UILayoutPriority(999)
+        trailingConst.priority = UILayoutPriority(999)
+        topConst.priority = UILayoutPriority(999)
+        bottomConst.priority = UILayoutPriority(999)
+        window.addConstraints([leadingConst, trailingConst, topConst, bottomConst])
+        self.leadingConst = leadingConst
+        self.trailingConst = trailingConst
+        self.topConst = topConst
+        self.bottomConst = bottomConst
+        
         self.containerView.sizeToFit()
+        
+        
         DispatchQueue.main.async{
             self.alpha = 0
             self.isHidden = true
@@ -170,7 +199,7 @@ public class PKCAlertView: UIView {
                 self.addConstraint(topConst)
                 
                 let bottomConst = NSLayoutConstraint(
-                    item: superview,
+                    item: window,
                     attribute: .bottom,
                     relatedBy: .equal,
                     toItem: self,
@@ -220,6 +249,7 @@ public class PKCAlertView: UIView {
                 self.alpha = 0
             }, completion: { (_) in
                 self.isHidden = true
+                self.removeFromSuperview()
             })
         }else if self.animationType == .modal{
             let bottomConst = NSLayoutConstraint(
@@ -236,6 +266,7 @@ public class PKCAlertView: UIView {
             }, completion: { (_) in
                 self.alpha = 0
                 self.isHidden = true
+                self.removeFromSuperview()
             })
         }else if self.animationType == .default{
             self.defaultTopConst?.constant = self.containerView.bounds.height
@@ -246,12 +277,11 @@ public class PKCAlertView: UIView {
                     self.alpha = 0
                 }, completion: { (_) in
                     self.isHidden = true
+                    self.removeFromSuperview()
                 })
             })
         }
     }
-    
-    
     
     
 }
